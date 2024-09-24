@@ -1,0 +1,11 @@
+[
+  {
+    "AdId": 1,
+    "AdDescription": "New summer sale on electronics",
+    "AdCreationDate": "2024-09-24T14:30:00",
+    "AdStatus": 0,
+    "AdBalance": 199.99,
+    "AdExternalId": "SUMMER-010",
+    "AdTotalLeads": 0
+  }
+]

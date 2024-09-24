@@ -1,0 +1,6 @@
+@VooltAPI_HostAddress = http://localhost:5078
+
+GET {{VooltAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

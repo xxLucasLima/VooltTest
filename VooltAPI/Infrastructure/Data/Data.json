@@ -1,0 +1,65 @@
+[
+  {
+    "AdId": 7,
+    "AdDescription": "string",
+    "AdCreationDate": "2024-09-24T16:37:42.595Z",
+    "AdStatus": 1,
+    "AdBalance": 0.0,
+    "AdExternalId": "string",
+    "AdTotalLeads": 0
+  },
+  {
+    "AdId": 2,
+    "AdDescription": "Gardening services available",
+    "AdCreationDate": "2024-08-20T11:00:00",
+    "AdStatus": 1,
+    "AdBalance": null,
+    "AdExternalId": "GARDEN-002",
+    "AdTotalLeads": 15
+  },
+  {
+    "AdId": 3,
+    "AdDescription": "Electronic gadgets on sale",
+    "AdCreationDate": "2024-07-25T14:45:00",
+    "AdStatus": 1,
+    "AdBalance": 120.00,
+    "AdExternalId": "ELECTRO-003",
+    "AdTotalLeads": 8
+  },
+  {
+    "AdId": 4,
+    "AdDescription": "House cleaning services",
+    "AdCreationDate": "2024-06-10T16:20:00",
+    "AdStatus": 1,
+    "AdBalance": 75.25,
+    "AdExternalId": "CLEAN-004",
+    "AdTotalLeads": 20
+  },
+  {
+    "AdId": 5,
+    "AdDescription": "Real estate listings",
+    "AdCreationDate": "2024-05-30T10:10:00",
+    "AdStatus": 0,
+    "AdBalance": 500.00,
+    "AdExternalId": "ESTATE-005",
+    "AdTotalLeads": 60
+  },
+  {
+    "AdId": 6,
+    "AdDescription": "New summer sale on electronics",
+    "AdCreationDate": "2024-09-24T14:30:00",
+    "AdStatus": 1,
+    "AdBalance": 199.99,
+    "AdExternalId": "SUMMER-010",
+    "AdTotalLeads": 0
+  },
+  {
+    "AdId": 7,
+    "AdDescription": "teste 1",
+    "AdCreationDate": "2024-09-24T14:30:00",
+    "AdStatus": 0,
+    "AdBalance": 199.99,
+    "AdExternalId": "SUMMER-010",
+    "AdTotalLeads": 0
+  }
+]
