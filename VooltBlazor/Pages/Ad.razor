@@ -1,0 +1,101 @@
+﻿@page "/ads"
+@page "/"
+
+@using MudBlazor
+@using VooltBlazor.Services
+@using VooltBlazor.Pages
+
+@inject HttpClient Http
+@inject IAdService AdService
+@inject NavigationManager NavigationManager
+@inject IDialogService DialogService
+
+<h3>Ads List</h3>
+
+<div class="form-group mb-4">
+    <MudButton @onclick="() => CreateAd (new Models.Ad(), false)" Color="Color.Primary">Create new Ad</MudButton>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Total Leads</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Ads == null)
+        {
+            <tr>
+                <td colspan="4">Loading...</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var ad in Ads)
+            {
+                <tr>
+                    <td>@ad.AdId</td>
+                    <td>@ad.AdDescription</td>
+                    <td>@ad.AdStatus</td>
+                    <td>@ad.AdTotalLeads</td>
+                    <td>
+                        <MudButton @onclick="(() => ShowEditModal(ad, true))">Details</MudButton>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private IEnumerable<Models.Ad> Ads;
+    protected override async Task OnInitializedAsync()
+    {
+        Ads = await AdService.GetAll();
+    }
+
+    private async Task ShowEditModal(Models.Ad ad, bool IsEdit)
+    {
+        var parameters = new DialogParameters { ["Ad"] = ad, ["isEdit"] = IsEdit };
+
+        DialogOptions options = new DialogOptions { CloseButton = true };
+
+        var dialog =await DialogService.ShowAsync<AdDialog>("Edit Ad", parameters, options);
+
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            // Recarregar a lista de anúncios após salvar
+            await LoadAds();
+        }
+    }
+
+    private async Task CreateAd(Models.Ad ad, bool IsEdit)
+    {
+        var parameters = new DialogParameters { ["Ad"] = ad, ["isEdit"] = IsEdit };
+
+        DialogOptions options = new DialogOptions { CloseButton = true };
+
+        var dialog = await DialogService.ShowAsync<AdDialog>("Create Ad", parameters, options);
+
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            // Recarregar a lista de anúncios após salvar
+            await LoadAds();
+        }
+
+    }
+
+    private async Task LoadAds()
+    {
+        Ads = await AdService.GetAll();
+        StateHasChanged();
+    }
+}

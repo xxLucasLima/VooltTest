@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "All projects",
+    "Projects": [
+      {
+        "Name": "VooltBlazor\\VooltBlazor.csproj",
+        "Action": "Start"
+      },
+      {
+        "Name": "VooltAPI\\VooltAPI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
