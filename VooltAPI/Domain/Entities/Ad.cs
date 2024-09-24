@@ -7,7 +7,7 @@
         public DateTime AdCreationDate { get; set; }
         public AdStatusEnum AdStatus { get; set; }
         public decimal? AdBalance { get; set; }
-        public string AdExternalId { get; set; }
+        public string? AdExternalId { get; set; }
         public int AdTotalLeads { get; set; }
     }
 }

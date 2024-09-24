@@ -22,9 +22,5 @@ namespace VooltAPI.Application.Services
             return _repository.GetAll();
         }
 
-        public Ad Update(Ad ad)
-        {
-            return _repository.Update(ad);
-        }
     }
 }

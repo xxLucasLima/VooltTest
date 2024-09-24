@@ -59,46 +59,6 @@ namespace VooltTests.API
         }
 
         [Fact]
-        public async Task Update_ReturnsOkResult_WhenAdIsValid()
-        {
-            // Arrange
-            var ad = new Ad { AdId = 1, AdDescription = "Updated Ad" };
-            _adServiceMock.Setup(service => service.Update(It.IsAny<Ad>())).Returns(ad);
-
-            // Act
-            var result = await _adController.Update(ad);
-
-            // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result.Result);
-            var returnedAd = Assert.IsType<Ad>(okResult.Value);
-            Assert.Equal(ad.AdId, returnedAd.AdId);
-            Assert.Equal(ad.AdDescription, returnedAd.AdDescription);
-        }
-
-        [Fact]
-        public async Task Update_ReturnsBadRequest_WhenAdIsNull()
-        {
-            // Act
-            var result = await _adController.Update(null);
-
-            // Assert
-            Assert.IsType<BadRequestResult>(result.Result);
-        }
-
-        [Fact]
-        public async Task Update_ReturnsNotFound_WhenServiceReturnsNull()
-        {
-            // Arrange
-            _adServiceMock.Setup(service => service.Update(It.IsAny<Ad>())).Returns((Ad)null);
-
-            // Act
-            var result = await _adController.Update(new Ad());
-
-            // Assert
-            Assert.IsType<NotFoundObjectResult>(result.Result);
-        }
-
-        [Fact]
         public async Task GetAll_ReturnsOkResult_WhenAdsExist()
         {
             // Arrange

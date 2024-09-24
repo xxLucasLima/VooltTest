@@ -24,17 +24,6 @@ namespace VooltAPI.Controllers
             return result != null ? Ok(result) : NotFound(result);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<Ad>> Update(Ad ad)
-        {
-            if(ad == null)
-            {
-                return BadRequest();
-            }
-            var result = _adService.Update(ad);
-            return result != null ? Ok(result) : NotFound(result);
-        }
-
         [HttpGet]
         public async Task<ActionResult<List<Ad>>> GetAll()
         {

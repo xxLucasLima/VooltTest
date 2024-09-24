@@ -12,20 +12,15 @@ namespace VooltBlazor.Services
             _httpClient = httpClient;
         }
         public async Task Create(Ad ad)
-        {
+        { 
             var response = await _httpClient.PostAsJsonAsync("api/ad", ad);
+
             response.EnsureSuccessStatusCode();
         }
 
         public async Task<IEnumerable<Ad>> GetAll()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<Ad>>("api/ad");
-        }
-
-        public async Task Update(Ad ad)
-        {
-            var response = await _httpClient.PutAsJsonAsync("api/ad", ad);
-            response.EnsureSuccessStatusCode();
         }
     }
 }

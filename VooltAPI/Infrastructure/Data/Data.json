@@ -1,12 +1,12 @@
 [
   {
-    "AdId": 8,
-    "AdDescription": "Lucas",
-    "AdCreationDate": "2024-09-12T00:00:00",
+    "AdId": 1,
+    "AdDescription": "Used cars for sale",
+    "AdCreationDate": "2024-09-15T09:30:00",
     "AdStatus": 0,
-    "AdBalance": null,
-    "AdExternalId": "1",
-    "AdTotalLeads": 10
+    "AdBalance": 250.50,
+    "AdExternalId": "CAR-001",
+    "AdTotalLeads": 40
   },
   {
     "AdId": 2,
@@ -37,7 +37,7 @@
   },
   {
     "AdId": 5,
-    "AdDescription": "Real estate listings",
+    "AdDescription": "Real estate listings 2",
     "AdCreationDate": "2024-05-30T10:10:00",
     "AdStatus": 0,
     "AdBalance": 500.00,
@@ -46,29 +46,11 @@
   },
   {
     "AdId": 6,
-    "AdDescription": "New summer sale on electronics",
-    "AdCreationDate": "2024-09-24T14:30:00",
-    "AdStatus": 1,
-    "AdBalance": 199.99,
-    "AdExternalId": "SUMMER-010",
-    "AdTotalLeads": 0
-  },
-  {
-    "AdId": 7,
-    "AdDescription": "teste 1",
-    "AdCreationDate": "2024-09-24T14:30:00",
+    "AdDescription": "Teste 2",
+    "AdCreationDate": "2024-09-04T00:00:00",
     "AdStatus": 0,
-    "AdBalance": 199.99,
-    "AdExternalId": "SUMMER-010",
-    "AdTotalLeads": 0
-  },
-  {
-    "AdId": 8,
-    "AdDescription": "Lucas",
-    "AdCreationDate": "2024-09-12T00:00:00",
-    "AdStatus": 0,
-    "AdBalance": null,
-    "AdExternalId": "1",
-    "AdTotalLeads": 10
+    "AdBalance": 11.01,
+    "AdExternalId": null,
+    "AdTotalLeads": 123
   }
 ]

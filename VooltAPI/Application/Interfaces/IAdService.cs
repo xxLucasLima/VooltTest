@@ -6,7 +6,6 @@ namespace VooltAPI.Application.Interfaces
     public interface IAdService
     {
         Ad Create(Ad ad);
-        Ad Update(Ad ad);
         List<Ad> GetAll();
     }
 }

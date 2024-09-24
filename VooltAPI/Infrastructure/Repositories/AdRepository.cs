@@ -11,52 +11,90 @@ namespace VooltAPI.Infrastructure.Repositories
 
         public AdRepository()
         {
-            if (!File.Exists(_filePath))
+            try
             {
-                File.WriteAllText(_filePath, "[]");
+                if (!File.Exists(_filePath))
+                {
+                    File.WriteAllText(_filePath, "[]");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to initialize data file at path: {_filePath}", ex);
             }
         }
 
-        public  Ad Create(Ad ad)
+        public Ad Create(Ad ad)
         {
-            var ads =  GetAll();
+            try
+            {
+                var ads = GetAll();
 
-            ad.AdId = ads.Count > 0 ? ads.Max(ad => ad.AdId) + 1 : 1;
+                if (ad.AdId > 0)
+                {
+                    var adIndex = ads.FindIndex(existingAd => existingAd.AdId == ad.AdId);
 
-            ads.Add(ad);
-            SaveAdsToFile(ads);
-            return ad;
+                    if (adIndex != -1)
+                    {
+                        ads[adIndex] = ad;
+                        SaveAdsToFile(ads).Wait();
+                    }
+                    else
+                    {
+                        throw new KeyNotFoundException("Ad not found");
+                    }
+                }
+                else
+                {
+                    ad.AdId = ads.Count > 0 ? ads.Max(existingAd => existingAd.AdId) + 1 : 1;
+                    ads.Add(ad);
+                    SaveAdsToFile(ads).Wait();
+                }
+
+                return ad;
+            }
+            catch (JsonException ex)
+            {
+                throw new InvalidOperationException("An error occurred while processing the JSON data.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An unexpected error occurred while creating the ad.", ex);
+            }
         }
 
         public List<Ad> GetAll()
         {
-            var jsonData = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<Ad>>(jsonData) ?? new List<Ad>();
-        }
-
-        public Ad Update(Ad ad)
-        {
-            var ads = GetAll();
-            var adIndex = ads.FindIndex(ad => ad.AdId == ad.AdId);
-
-            if (adIndex != -1)
+            try
             {
-                ads[adIndex] = ad;
-                SaveAdsToFile(ads);
+                var jsonData = File.ReadAllText(_filePath);
+                return JsonConvert.DeserializeObject<List<Ad>>(jsonData) ?? new List<Ad>();
             }
-            else
+            catch (JsonException ex)
             {
-                throw new Exception("Ad not found");
+                throw new InvalidOperationException("An error occurred while deserializing the JSON data.", ex);
             }
-
-            return ad;
-
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An unexpected error occurred while retrieving ads.", ex);
+            }
         }
 
         private async Task SaveAdsToFile(List<Ad> ads)
         {
-            var jsonData = JsonConvert.SerializeObject(ads, Formatting.Indented);
-            await File.WriteAllTextAsync(_filePath, jsonData);
+            try
+            {
+                var jsonData = JsonConvert.SerializeObject(ads, Formatting.Indented);
+                await File.WriteAllTextAsync(_filePath, jsonData);
+            }
+            catch (JsonException ex)
+            {
+                throw new InvalidOperationException("An error occurred while serializing the ad data.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An unexpected error occurred while saving ads.", ex);
+            }
         }
     }
 }
